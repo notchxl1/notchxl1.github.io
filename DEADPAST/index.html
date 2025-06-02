@@ -5,9 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEADPAST</title>
     <script>
-        if (window.location.hostname !== 'erasedhelp.net') {
-            window.location.href = 'https://erasedhelp.net/deadpast';
-        }
+        window.addEventListener('load', function() {
+            const audio = document.querySelector('audio');
+            const image = document.querySelector('img');
+            
+            // Make only the image clickable
+            image.style.cursor = 'pointer';
+            
+            // Handle image click
+            image.addEventListener('click', function() {
+                audio.muted = false;
+                audio.play().catch(function(error) {
+                    console.log("Audio playback failed:", error);
+                });
+            });
+        });
     </script>
     <style>
         body {
@@ -26,7 +38,7 @@
     </style>
 </head>
 <body>
-    <audio autoplay loop>
+    <audio autoplay loop playsinline preload="auto" muted>
         <source src="312195_01 (2).wav" type="audio/wav">
     </audio>
     <img src="deadpast.png" alt="DEADPAST">
